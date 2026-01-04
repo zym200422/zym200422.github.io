@@ -129,13 +129,13 @@
 <li>提交内容：<code>&lt;h1&gt;XSS测试&lt;/h1&gt;</code></li>
 <li>观察发现标签被成功解析并显示</li>
 </ol>
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://github.com/zym200422/zym200422.github.io/blob/main/%E5%9B%BE%E7%89%87/Snipaste_2026-01-04_18-47-22.png"><br><img src="https://github.com/zym200422/zym200422.github.io/blob/main/%E5%9B%BE%E7%89%87/Snipaste_2026-01-04_18-48-23.png"></h2><h3 id="步骤2：XSS-Payload注入"><a href="#步骤2：XSS-Payload注入" class="headerlink" title="步骤2：XSS Payload注入"></a>步骤2：XSS Payload注入</h3><ol>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2026/png/40551192/1767524718659-d30b8a47-1c41-49cf-a862-3317a1bdb5a2.png?x-oss-process=image/format,webp"><br><img src="https://cdn.nlark.com/yuque/0/2026/png/40551192/1767524718738-5c81510f-2db1-4e8f-9eb5-280910aec813.png?x-oss-process=image/format,webp"></h2><h3 id="步骤2：XSS-Payload注入"><a href="#步骤2：XSS-Payload注入" class="headerlink" title="步骤2：XSS Payload注入"></a>步骤2：XSS Payload注入</h3><ol>
 <li>选择另一个医生页面</li>
 <li>在提问框提交以下payload：</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">722</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://github.com/zym200422/zym200422.github.io/blob/main/%E5%9B%BE%E7%89%87/Snipaste_2026-01-04_18-52-15.png"></h2><h3 id="步骤3：寻找对应的web页面"><a href="#步骤3：寻找对应的web页面" class="headerlink" title="步骤3：寻找对应的web页面"></a>步骤3：寻找对应的web页面</h3><p>1.找寻与之相关的web页面，因为只有web才能解析<br>2.终于在一个消息回复页面找到了<br><img src="/%E5%9B%BE%E7%89%87%E5%8D%A0%E4%BD%8D%E7%AC%A6_%E6%AD%A5%E9%AA%A41" alt="步骤1截图"></p>
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://cdn.nlark.com/yuque/0/2026/png/40551192/1767524718655-4ccbf703-e200-4035-ad60-4d480e8ecfe3.png?x-oss-process=image/format,webp"></h2><h3 id="步骤3：寻找对应的web页面"><a href="#步骤3：寻找对应的web页面" class="headerlink" title="步骤3：寻找对应的web页面"></a>步骤3：寻找对应的web页面</h3><p>1.找寻与之相关的web页面，因为只有web才能解析<br>2.终于在一个消息回复页面找到了<br><img src="/%E5%9B%BE%E7%89%87%E5%8D%A0%E4%BD%8D%E7%AC%A6_%E6%AD%A5%E9%AA%A41" alt="步骤1截图"></p>
 <h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p>1.建立白名单机制，只允许安全的HTML标签和属性</p>
 <p>###感想<br>第一次遇到这种联合在一起的xss，各位大佬权当看个乐</p>
 
