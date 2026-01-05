@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>某企业src挖掘 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">小明同学呀</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/posts/">Posts</a>
+                
+                <a class="menu-item" href="/category/">Categories</a>
+                
+                <a class="menu-item" href="/tag/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">小明同学呀</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/posts/">Posts</a>
+                
+                <a class="menu-item" href="/category/">Categories</a>
+                
+                <a class="menu-item" href="/tag/">Tags</a>
+                
+                <a class="menu-item" href="/about/">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">某企业src挖掘</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 4, 2026&nbsp;&nbsp;18:41:36</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="存储型XSS漏洞报告"><a href="#存储型XSS漏洞报告" class="headerlink" title="存储型XSS漏洞报告 -"></a>存储型XSS漏洞报告 -</h1><h2 id="📌-基本信息"><a href="#📌-基本信息" class="headerlink" title="📌 基本信息"></a>📌 基本信息</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>漏洞标题</strong></td>
+<td>xxx.com存储型XSS漏洞</td>
+</tr>
+<tr>
+<td><strong>危害等级</strong></td>
+<td>🔴 中危</td>
+</tr>
+<tr>
+<td><strong>漏洞类型</strong></td>
+<td>存储型跨站脚本攻击（Stored XSS）</td>
+</tr>
+<tr>
+<td><strong>影响域名</strong></td>
+<td><code>xxx.com</code></td>
+</tr>
+<tr>
+<td><strong>漏洞赏金</strong></td>
+<td>200￥</td>
+</tr>
+</tbody></table>
+<h2 id="📝-漏洞描述"><a href="#📝-漏洞描述" class="headerlink" title="📝 漏洞描述"></a>📝 漏洞描述</h2><p>在“xxx小程序”的医生提问功能中，用户提交的HTML内容未经任何过滤直接存储到数据库。攻击者可通过构造的分享链接（<code>https://xxx.com/post/question?question_id=&lt;ID&gt;</code>）访问问题页面，导致恶意脚本在受害者浏览器中执行。</p>
+<h2 id="🔍-漏洞复现流程"><a href="#🔍-漏洞复现流程" class="headerlink" title="🔍 漏洞复现流程"></a>🔍 漏洞复现流程</h2><h3 id="步骤1：基础HTML标签测试"><a href="#步骤1：基础HTML标签测试" class="headerlink" title="步骤1：基础HTML标签测试"></a>步骤1：基础HTML标签测试</h3><ol>
+<li>进入xx小程序首页</li>
+<li>随机选择一个医生进入详情页</li>
+<li>点击“问问题”功能</li>
+<li>提交内容：<code>&lt;h1&gt;XSS测试&lt;/h1&gt;</code></li>
+<li>观察发现标签被成功解析并显示</li>
+</ol>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://github.com/zym200422/pic/blob/main/%E5%9B%BE%E7%89%87/Snipaste_2026-01-04_18-47-22.png"><br><img src="https://github.com/zym200422/pic/blob/main/%E5%9B%BE%E7%89%87/Snipaste_2026-01-04_18-48-23.png"></h2><h3 id="步骤2：XSS-Payload注入"><a href="#步骤2：XSS-Payload注入" class="headerlink" title="步骤2：XSS Payload注入"></a>步骤2：XSS Payload注入</h3><ol>
+<li>选择另一个医生页面</li>
+<li>在提问框提交以下payload：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">722</span>)&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://github.com/zym200422/pic/blob/main/%E5%9B%BE%E7%89%87/Snipaste_2026-01-04_18-48-23.png"></h2><h3 id="步骤3：寻找对应的web页面"><a href="#步骤3：寻找对应的web页面" class="headerlink" title="步骤3：寻找对应的web页面"></a>步骤3：寻找对应的web页面</h3><p>1.找寻与之相关的web页面，因为只有web才能解析<br>2.终于在一个消息回复页面找到了<br><img src="https://github.com/zym200422/pic/blob/main/%E5%9B%BE%E7%89%87/Snipaste_2026-01-04_18-52-15.png"></p>
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><p>1.建立白名单机制，只允许安全的HTML标签和属性</p>
+<h3 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h3><p>第一次遇到这种联合在一起的xss，各位大佬权当看个乐</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2026/01/04/%E6%9F%90%E4%BC%81%E4%B8%9Asrc%E6%8C%96%E6%8E%98/">http://example.com/2026/01/04/%E6%9F%90%E4%BC%81%E4%B8%9Asrc%E6%8C%96%E6%8E%98/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2026/01/04/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
