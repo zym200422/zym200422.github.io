@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="小明同学">
+
+
+
+
+
+<title>小明同学</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const pagebody = document.getElementsByTagName('body')[0]
+
+            function setTheme(status) {
+
+                if (status === 'dark') {
+                    window.sessionStorage.theme = 'dark'
+                    pagebody.classList.add('dark-theme');
+
+                } else if (status === 'light') {
+                    window.sessionStorage.theme = 'light'
+                    pagebody.classList.remove('dark-theme');
+                }
+            };
+
+            setTheme(window.sessionStorage.theme)
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">小明同学呀</a></div>
+            <div class="menu navbar-right">
+                
+                <a class="menu-item" href="/archives">文章</a>
+                
+                <a class="menu-item" href="/about">关于</a>
+                
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">小明同学呀</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">
+                    <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 17.27q-.213 0-.356-.145T4 16.768t.144-.356t.356-.143h15q.213 0 .356.144q.144.144.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.144T4 11.999t.144-.356t.356-.143h15q.213 0 .356.144t.144.357t-.144.356t-.356.143zm0-4.77q-.213 0-.356-.143Q4 7.443 4 7.23t.144-.356t.356-.143h15q.213 0 .356.144T20 7.23t-.144.356t-.356.144z"/></svg>
+                    <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Material Symbols Light by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="m12 12.708l-5.246 5.246q-.14.14-.344.15t-.364-.15t-.16-.354t.16-.354L11.292 12L6.046 6.754q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16L12 11.292l5.246-5.246q.14-.14.345-.15q.203-.01.363.15t.16.354t-.16.354L12.708 12l5.246 5.246q.14.14.15.345q.01.203-.15.363t-.354.16t-.354-.16z"/></svg>
+                </div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                <a class="menu-item" href="/archives">文章</a>
+                
+                <a class="menu-item" href="/about">关于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.classList.contains("active")) {
+            toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        } else {
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title"></h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">小明同学</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 13, 2026&nbsp;&nbsp;12:45:47</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="越权的感悟：总结一下近半年来遇到的通过修改id值造成的越权："><a href="#越权的感悟：总结一下近半年来遇到的通过修改id值造成的越权：" class="headerlink" title="越权的感悟：总结一下近半年来遇到的通过修改id值造成的越权："></a>越权的感悟：总结一下近半年来遇到的通过修改id值造成的越权：</h3><h4 id="1-在一次对app挖掘过程中通过遍历id值获取到了隐藏的礼物。"><a href="#1-在一次对app挖掘过程中通过遍历id值获取到了隐藏的礼物。" class="headerlink" title="1.在一次对app挖掘过程中通过遍历id值获取到了隐藏的礼物。"></a>1.在一次对app挖掘过程中通过遍历id值获取到了隐藏的礼物。</h4><p>1.1那是一个被夕阳浸透的黄昏，光线从窗边斜斜地漫进来，将整个房间染成一种近乎虚幻的琥珀色。我靠在椅子上，有些随意地点开了那个熟悉的App。</p>
+<p>起初只是漫无目的地划着，像往常一样浏览着各种功能和活动入口。直到我的指尖停在“会员福利领取”那个按钮上——屏幕泛着微光，映着我没什么表情的脸。但就在准备点击的瞬间，我注意到了什么。</p>
+<p><img src="C:\Users\26477\AppData\Roaming\Typora\typora-user-images\image-20260113120349636.png" alt="image-20260113120349636"></p>
+<p>在请求链接里，挂着一个不起眼的参数：<code>id=</code>。</p>
+<p>我的动作顿了一下。</p>
+<p>夕阳的光似乎在这一刻变得锐利起来。我试着改了下那个数字，重新发送——果然，页面刷新，另一个礼物跳了出来。心跳快了一拍。</p>
+<p><code>id</code>……代表的是礼物编号。</p>
+<p><img src="C:\Users\26477\AppData\Roaming\Typora\typora-user-images\image-20260113120507062.png" alt="image-20260113120507062"></p>
+<p>一个念头像藤蔓一样迅速缠上来：如果……不止这些呢？</p>
+<p>我没有犹豫，直接把请求丢进了Burp Suite的Intruder模块。光标在“开始攻击”的按钮上悬停半秒，然后落下。屏幕上的数字开始飞速滚动，一个接一个的请求像无声的潮水般涌向服务器。</p>
+<p>我静静等着，房间里只有机箱风扇轻微的转动声。</p>
+<p>然后——它们开始回来了。</p>
+<p>一个，两个，五个，十个……越来越多的响应亮起绿色。隐藏的礼物，像被从深海中打捞上来的宝藏，一个接一个在列表里浮现出来。会员加时卡、专属装扮、虚拟徽章……尤其是加时卡，密密麻麻，几乎刷了屏。</p>
+<p><img src="C:\Users\26477\AppData\Roaming\Typora\typora-user-images\image-20260113120615418.png" alt="image-20260113120615418"></p>
+<p>我盯着屏幕，看着那行“会员有效期”的数字，从几个月开始跳转、增长、再增长。</p>
+<p>最后，它停在了“两年后”。</p>
+<p><img src="C:\Users\26477\AppData\Roaming\Typora\typora-user-images\image-20260113120650180.png" alt="image-20260113120650180"></p>
+<p>最后也是获取到了厂商的2K奖励。</p>
+<h4 id="2-在一个下载的功能上通过修改id发现了开发留下的小小惊喜—得到了遗留的数十万敏感信息"><a href="#2-在一个下载的功能上通过修改id发现了开发留下的小小惊喜—得到了遗留的数十万敏感信息" class="headerlink" title="2.在一个下载的功能上通过修改id发现了开发留下的小小惊喜—得到了遗留的数十万敏感信息"></a>2.在一个下载的功能上通过修改id发现了开发留下的小小惊喜—得到了遗留的数十万敏感信息</h4><p>夕阳的余温似乎还未从指尖散去，那股由探索带来的细微兴奋感，依然在心里轻轻鼓动。我将视线投向另一家SRC平台——坦白说，起初我对它并无好感，甚至有些厌烦。</p>
+<p>原因很简单：我曾满怀热情地向他们提交过三份漏洞报告，换来的却全是冷冰冰的“无影响”判定。那种被忽视的感觉，像一拳打在棉花上，让人憋闷。可戏剧性的是，一周后，我竟收到了他们的回复邮件，告知漏洞均已修复，并客气地邀请我“再帮忙看看是否还有其他问题”。</p>
+<p>一股无名火“噌”地就冒了上来。我几乎是气呼呼地找到了他们的客服，准备理论一番。没想到，迎接我的却是出奇耐心与礼貌的解释。那位客服温和地告诉我，他们的流程规定，所有漏洞在修复前都统一标注为“无影响”，但这并不影响最终的奖金评定**。</p>
+<p>怒气像被针戳破的气球，瞬间消散了。取而代之的，是一种略带惭愧的新奇感。尤其想到审核人员那副好脾气，我竟觉得……或许可以再试试。</p>
+<p>于是我又回到了该平台，平台开放注册，我顺手就创建了一个账户。登录之后，依然是那套熟悉的流程：到处点点，看看每个按钮、每处交互背后藏着什么。目光最终停留在一个不起眼的“文件导出”功能上。</p>
+<p>习惯性地，我截获了导出请求。一个参数跳入眼帘：<strong><code>type</code></strong>。它控制着导出的文件类型。</p>
+<p>一个念头像小鱼吐泡般自然地浮起：如果……把<code>type</code>的值改成<code>0</code>、<code>-1</code>，或者别的什么呢？</p>
+<p>没有太多犹豫，我修改了参数，发送请求。前几次尝试如同石沉大海，返回的都是常规错误或空白。但当<code>type=0</code>的请求发出后，浏览器竟然开始下载一个ZIP压缩包。</p>
+<p>我的心跳漏了一拍。</p>
+<p>解压，打开。里面并非预期的业务数据，而是大量陈旧的、本应被清理的源码备份与配置文件——其中不乏数据库连接信息、内部接口说明等<strong>敏感内容</strong>。这显然是开发早期遗留的“纪念品”，却被无意间保留在了生产环境。</p>
+<p>我将发现整理成清晰的报告，附上关键证据，再次提交。</p>
+<p>几天后，奖励通知抵达邮箱：1300元。数字跳动的瞬间，我想起的却不是奖金，而是客服那句礼貌的解释，和那个在黄昏后独自探索、终于听见回响的夜晚。</p>
+<p><img src="C:\Users\26477\AppData\Roaming\Typora\typora-user-images\image-20260113123314611.png" alt="image-20260113123314611"></p>
+<p><img src="C:\Users\26477\AppData\Roaming\Typora\typora-user-images\image-20260113123155470.png" alt="image-20260113123155470"></p>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>确实，这两次看似“幸运”的发现，本质上都指向同一个根源——开发人员对传入参数<strong>缺乏有效的校验与控制</strong>。</p>
+<p>站在渗透测试的角度看，这无异于敞开了一道门。无论是控制礼物的<code>id</code>，还是决定文件类型的<code>type</code>，它们都是用户与系统后端对话的“钥匙”。若这些钥匙的形制不被严格审查，那么任何人只要稍作尝试，就可能触达本不该被看见的房间。</p>
+<p>因此，一个很直接的思路便在经验中成型：往后在测试中，但凡遇到类似通过ID、序号、类型等参数来控制输出或行为的地方——尤其是那些看似平凡无奇的查询、导出、加载功能——都不妨多问一句：“如果我换一把钥匙，门后会不会是别的世界？”</p>
+<p>这不是盲目猜测，而是基于漏洞本质的合理推演。参数越简单，背后隐藏的访问控制逻辑缺失的风险往往就越大。每一次对<code>id=1</code>的试探，或是对<code>type=json</code>的篡改，其实都是在验证：这扇门，真的上锁了吗？</p>
+<p>说到底，漏洞的发现常常始于一个简单的“如果”。而安全的防线，也恰恰应该始于对每一个“如果”的认真回答。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>小明同学</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://zym200422.github.io/2026/01/13/%E8%B6%8A%E6%9D%83/">https://zym200422.github.io/2026/01/13/%E8%B6%8A%E6%9D%83/</a></span>
+                    </p>
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2026/01/04/%E6%9F%90%E4%BC%81%E4%B8%9Asrc%E6%8C%96%E6%8E%98/">某企业src挖掘</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© 小明同学 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
